@@ -18,6 +18,7 @@ const Input = forwardRef<HTMLInputElement , InputProps>((props, ref) => {
           ref={ref} 
           type={type} 
           placeholder={placeholder}
+          className="input"
           {...rest} 
         />
       </div>
