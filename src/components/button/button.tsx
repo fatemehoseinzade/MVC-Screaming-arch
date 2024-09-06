@@ -1,5 +1,4 @@
 import { forwardRef } from 'react';
-import { ClipLoader } from 'react-spinners';
 
 interface ButtonProps {
   label: string;
@@ -25,7 +24,7 @@ const Button = forwardRef<HTMLDivElement, ButtonProps>((props, ref) => {
 
   return (
     <div ref={ref} className={`btn btn-${color} btn-${size} `} {...rest}>
-      {loading && <ClipLoader color={color} loading={loading} size={20} />}
+      {/* {loading && <ClipLoader color={color} loading={loading} size={20} />} */}
       {icon && <img src={icon} alt={label} />}
       {label}
     </div>
