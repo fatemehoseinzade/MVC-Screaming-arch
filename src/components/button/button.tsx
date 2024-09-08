@@ -1,6 +1,8 @@
-import { forwardRef } from 'react';
+import clsx from 'clsx';
+import { forwardRef, MouseEventHandler } from 'react';
 
-interface ButtonProps {
+interface ButtonProps
+{
   label: string;
   loading?: boolean;
   size?: 'sm' | 'md' | 'lg';
@@ -8,9 +10,12 @@ interface ButtonProps {
   mode?: 'disable' | 'inside' | 'fill';
   icon?: string;
   iconPosition?: 'right' | 'left';
+  className?: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-const Button = forwardRef<HTMLDivElement, ButtonProps>((props, ref) => {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
+{
   const {
     label,
     loading = false,
@@ -19,15 +24,17 @@ const Button = forwardRef<HTMLDivElement, ButtonProps>((props, ref) => {
     mode = 'fill',
     icon,
     iconPosition = 'left',
+    className,
+    onClick,
     ...rest
   } = props;
 
   return (
-    <div ref={ref} className={`btn btn-${color} btn-${size} `} {...rest}>
+    <button ref={ref} className={clsx(`bg-slate-800 text-white rounded-md w-24 h-8`, className)} onClick={onClick} {...rest}>
       {/* {loading && <ClipLoader color={color} loading={loading} size={20} />} */}
       {icon && <img src={icon} alt={label} />}
       {label}
-    </div>
+    </button>
   );
 });
 

@@ -1,18 +1,38 @@
 import { useState } from 'react';
 import Input from '../../components/input/input';
 import Select from '../../components/select/select';
+import { OutlineSearchFavoriteIcon } from '../../icons';
+import Button from '../../components/button/button';
+import Checkbox from '../../components/checkbox/checkbox';
+import { Option } from '../../types/global-types';
 
-const DashboardPage = () => {
+const DashboardPage = () =>
+{
   const [value, setValue] = useState('');
   const [radio, setRadio] = useState('2');
-  const [selected, setSelected] = useState<Array<string>>([]);
+  const [selected, setSelected] = useState<Array<Option>>([]);
+  const [gender, setGender] = useState(false);
+
+  const onSubmit = (): void =>
+  {
+    console.log(value, selected)
+  }
+
   return (
-    <div className="grid grid-cols-3 gap-3">
-      <Input label="Search" className="grid-col-4" placeholder={'Search...'} value={value} onChange={setValue} />
+    <div className="flex flex-col gap-3 items-start">
+      <Input
+        label="Search"
+        containerClassName="grid-col-2"
+        placeholder={'Search...'}
+        errorMessage='cfdsfs'
+        value={value}
+        onChange={setValue}
+        startIcon={<OutlineSearchFavoriteIcon dimensions={16} />}
+      />
       <Select
         label="Select "
         className="grid-col-4"
-        value={selected}
+        selected={selected}
         onSelect={setSelected}
         options={[
           { label: '1', value: '1' },
@@ -30,6 +50,8 @@ const DashboardPage = () => {
         ]}
         onSelect={setRadio}
       /> */}
+      <Checkbox label={'female'} value={gender} onChange={() => setGender(!gender)} className="mb-2" />
+      <Button label={'submit'} onClick={onSubmit} className="mb-2" />
     </div>
   );
 };
